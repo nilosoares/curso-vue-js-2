@@ -14,28 +14,28 @@
                 <div class="life-bar">
                     <div class="life"></div>
                 </div>
-                <div></div>
+                <div>{{ playerLife }}%</div>
             </div>
             <div class="score">
                 <h1>Monstro</h1>
                 <div class="life-bar">
                     <div class="life"></div>
                 </div>
-                <div></div>
+                <div>{{ monsterLife }}%</div>
             </div>
         </div>
         <div class="panel result" v-if="showResult">
-            <div class="win">Você ganhou!!! :)</div>
-            <div class="lose">Você perdeu! :(</div>
+            <div class="win" v-if="youWin">Você ganhou!!! :)</div>
+            <div class="lose" v-if="youLost">Você perdeu! :(</div>
         </div>
         <div class="panel buttons">
             <template v-if="showActions">
-                <button class="btn attack">Ataque</button>
-                <button class="btn especial-attack">Ataque Especial</button>
-                <button class="btn heal">Curar</button>
-                <button class="btn give-up">Desistir</button>
+                <button class="btn attack" @click="attack">Ataque</button>
+                <button class="btn especial-attack" @click="specialAttack">Ataque Especial</button>
+                <button class="btn heal" @click="heal">Curar</button>
+                <button class="btn give-up" @click="giveUp">Desistir</button>
             </template>
-            <button class="btn new-game" v-if="showMenu">Iniciar Jogo</button>
+            <button class="btn new-game" v-if="showMenu" @click="start">Iniciar Jogo</button>
         </div>
         <div class="panel logs">
             <ul>
