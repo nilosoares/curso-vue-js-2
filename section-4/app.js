@@ -21,6 +21,7 @@ new Vue({
         matchResult: MATCH_RESULT.UNKNOWN,
         playerLife: 100,
         monsterLife: 100,
+        history: [],
     },
     computed: {
         showMenu() {
@@ -46,23 +47,42 @@ new Vue({
             this.monsterLife = 100;
         },
         attack() {
-            const attack = getRandomInt(5, 12);
-            this.monsterLife -= attack;
+            this.playerAttack(getRandomInt(5, 12));
             this.monsterAttack();
         },
         specialAttack() {
-            const attack = getRandomInt(13, 20);
-            this.monsterLife -= attack;
+            this.playerAttack(getRandomInt(13, 20));
             this.monsterAttack();
         },
         heal() {
             const heal = getRandomInt(11, 18);
+
             this.playerLife += Math.max(100, heal);
+
+            this.history.unshift({
+                type: 'player_heal',
+                value: heal,
+            });
+
             this.monsterAttack();
+        },
+        playerAttack(attack) {
+            this.monsterLife -= attack;
+
+            this.history.unshift({
+                type: 'player_attack',
+                value: attack,
+            });
         },
         monsterAttack() {
             const attack = getRandomInt(10, 15);
+
             this.playerLife -= attack;
+
+            this.history.unshift({
+                type: 'monster_attack',
+                value: attack,
+            });
         },
         giveUp() {
             this.state = STATE.MENU;

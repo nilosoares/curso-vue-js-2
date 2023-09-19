@@ -37,9 +37,19 @@
             </template>
             <button class="btn new-game" v-if="showMenu" @click="start">Iniciar Jogo</button>
         </div>
-        <div class="panel logs">
+        <div class="panel logs" v-if="history.length > 0">
             <ul>
-                <li></li>
+                <li v-for="(log, i) in history" :key="i">
+                    <div class="player" v-if="log.type === 'player_attack'">
+                        Jogador atingiu monstro com {{ log.value }}.
+                    </div>
+                    <div class="player" v-if="log.type === 'player_heal'">
+                        Jogador se curou em {{ log.value }}.
+                    </div>
+                    <div class="monster" v-if="log.type === 'monster_attack'">
+                        Monstro atingiu jogador com {{ log.value }}.
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
