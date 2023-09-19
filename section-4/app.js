@@ -57,7 +57,7 @@ new Vue({
         heal() {
             const heal = getRandomInt(11, 18);
 
-            this.playerLife += Math.max(100, heal);
+            this.playerLife += heal;
 
             this.history.unshift({
                 type: 'player_heal',
