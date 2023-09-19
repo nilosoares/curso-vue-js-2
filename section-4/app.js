@@ -65,15 +65,7 @@ new Vue({
             this.monsterAttack();
         },
         heal() {
-            const heal = getRandomInt(11, 18);
-
-            this.playerLife += heal;
-
-            this.history.unshift({
-                type: 'player_heal',
-                value: heal,
-            });
-
+            this.playerHeal();
             this.monsterAttack();
         },
         playerAttack(attack) {
@@ -82,6 +74,16 @@ new Vue({
             this.history.unshift({
                 type: 'player_attack',
                 value: attack,
+            });
+        },
+        playerHeal() {
+            const heal = getRandomInt(11, 18);
+
+            this.playerLife += heal;
+
+            this.history.unshift({
+                type: 'player_heal',
+                value: heal,
             });
         },
         monsterAttack() {
