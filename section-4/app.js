@@ -90,8 +90,10 @@ new Vue({
     },
     watch: {
         playerLife(value) {
-            if (value < 0) {
+            if (value <= 0) {
                 this.state = STATE.ENDED;
+                this.matchResult = MATCH_RESULT.LOST;
+                this.playerLife = 0;
             } else if (value > 100) {
                 this.playerLife = 100;
             } else {
@@ -99,8 +101,10 @@ new Vue({
             }
         },
         monsterLife(value) {
-            if (value < 0) {
+            if (value <= 0) {
                 this.state = STATE.ENDED;
+                this.matchResult = MATCH_RESULT.WIN;
+                this.monsterLife = 0;
             } else if (value > 100) {
                 this.monsterLife = 100;
             } else {
