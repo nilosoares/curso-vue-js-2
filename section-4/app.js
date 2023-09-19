@@ -39,6 +39,16 @@ new Vue({
         youLost() {
             return this.playerLife <= 0;
         },
+        playerLifeBarStyle() {
+            return {
+                width: `${this.playerLife}%`,
+            };
+        },
+        monsterLifeBarStyle() {
+            return {
+                width: `${this.monsterLife}%`,
+            };
+        },
     },
     methods: {
         start() {
